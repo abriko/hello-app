@@ -1,8 +1,8 @@
 import random
-import sys
+import os
 from flask import Flask
 
-ERROR_RATE = 90
+ERROR_RATE = os.environ.get('ERROR_RATE', '90')
 
 app = Flask(__name__)
 
@@ -25,8 +25,5 @@ def error():
 		return "No error found!"
 
 if __name__ == '__main__':
-	if len(sys.argv) >= 2:
-		ERROR_RATE = int(sys.argv[1])
-	
 	print(f"Error rate is {ERROR_RATE}%")
 	app.run(host='0.0.0.0', port=8080)
