@@ -48,8 +48,8 @@ jobs:
           scan-type: 'fs'
           image-ref: '.'
           github-pat: ${{ secrets.GITHUB_TOKEN }}
-      -
-        name: Docker meta
+          
+      - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
         with:
