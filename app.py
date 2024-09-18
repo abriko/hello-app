@@ -21,7 +21,7 @@ def factorial(n):
 def increase_cpu_usage(duration):
   start_time = time.time()
   while time.time() - start_time < duration:
-    result = factorial(1000)
+    result = factorial(900)
 
 @app.route('/')
 def hello():
