@@ -12,6 +12,17 @@ app = Flask(__name__)
 def isError(percentage):
 	return random.randint(1, 100) <= percentage
 
+def factorial(n):
+  if n == 0:
+    return 1
+  else:
+    return n * factorial(n - 1)
+
+def increase_cpu_usage(duration):
+  start_time = time.time()
+  while time.time() - start_time < duration:
+    result = factorial(1000)
+
 @app.route('/')
 def hello():
 	return "Hello World!"
@@ -41,6 +52,11 @@ def error():
 def errorCrash():
 	os.kill(os.getpid(), signal.SIGINT)
 	raise RuntimeError('System failure!')
+
+@app.route('/heavy_load')
+def heavyLoad():
+	increase_cpu_usage(3)
+	return "All good, calculate done!"
 
 if __name__ == '__main__':
 	print(f"⚠️ Error rate is {ERROR_RATE}%")
